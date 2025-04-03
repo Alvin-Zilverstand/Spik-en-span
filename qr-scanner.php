@@ -1,11 +1,3 @@
-<!-- filepath: c:\xampp\htdocs\Spik-en-span\qr-scanner.php -->
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: employee-login.html");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
