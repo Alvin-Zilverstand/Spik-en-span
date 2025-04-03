@@ -30,7 +30,7 @@ if ($password_hash && password_verify($password, $password_hash)) {
     session_start();
     $_SESSION['user_id'] = $user_id;
     echo "Login successful!";
-    header("Location: qr-scanner.html"); // Redirect to QR scanner page
+    header("Location: qr/qr.html"); // Redirect to QR scanner page
 } else {
     echo "Invalid login credentials.";
 }
