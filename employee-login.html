@@ -11,14 +11,14 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Medewerker Login</h1>
-        <form id="loginForm" class="mt-4">
+        <form id="loginForm" action="process_login.php" method="POST" class="mt-4">
             <div class="mb-3">
                 <label for="username" class="form-label">Gebruikersnaam</label>
-                <input type="text" id="username" class="form-control" required>
+                <input type="text" id="username" name="username" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Wachtwoord</label>
-                <input type="password" id="password" class="form-control" required>
+                <input type="password" id="password" name="password" class="form-control" required>
             </div>
             <button type="submit" class="btn btn-primary">Inloggen</button>
         </form>
