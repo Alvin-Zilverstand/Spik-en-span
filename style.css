@@ -31,6 +31,7 @@
         list-style: none;
         padding: 0;
         display: flex;
+        margin-right: 15px;
         }
 
     .nav-links li {
