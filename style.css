@@ -13,13 +13,12 @@
     font-family: Arial, sans-serif;
     }
       
-    .navbar {
+.navbar {
     display: flex;
     align-items: right;
     justify-content: right;
     background-color: #000;
     padding: 10px 20px;
-    color: black;
     }
 
     .logo {
@@ -45,105 +44,45 @@
          }
 
     .section{
-        background-color: #000000;
+        background-color: #000;
     }
 
 
 
-    .size {
+.size {
     width: 33.33%;
     height: 25%;
-    }
+}
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    text-align: center;
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
 }
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+
+.item {
+    flex: 0 0 48%;
+    border: 1px solid #ddd;
     border-radius: 5px;
-}
-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px; 
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #218838;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
+    padding: 15px;
     text-align: center;
-}v
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    opacity: 0.5;
-    background-color: rgba(255, 255, 255, 0.7);
-    }
-h2 {
-    color: #28a745;
-}
-p {
-    text-align: left;
-    line-height: 1.6;
-}
-.team-member {
-    margin: 20px 0;
-}
-.team-member img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-}
-.team-member h3 {
-    margin: 10px 0 5px;
-}
-.team-member p {
-    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.achtergrond-video {
-    position: absolute;
-    top: 0;
-    left: 0;
+.item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.item h5 {
+    margin-bottom: 10px;
+}
+
+.item p {
+    margin-bottom: 15px;
+}
+
+.item button {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; 
-  }
-  
-  .inhoud {
-    position: relative;
-    z-index: 1;
-    color: white;
-    text-align: center;
-    margin-top: 20vh;
-  }
-  
-
+}
