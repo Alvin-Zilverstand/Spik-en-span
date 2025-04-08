@@ -13,7 +13,7 @@
     font-family: Arial, sans-serif;
     }
       
-.navbar {
+    .navbar {
     display: flex;
     align-items: right;
     justify-content: right;
@@ -49,10 +49,10 @@
 
 
 
-.size {
+    .size {
     width: 33.33%;
     height: 25%;
-}
+    }
 
 body {
     font-family: Arial, sans-serif;
@@ -123,4 +123,12 @@ p {
 }
 .team-member p {
     margin: 0;
+}
+
+body{
+    background-image: url(img/spik\ en\ span\ achtergrond.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
 }
