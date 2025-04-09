@@ -100,8 +100,16 @@
     max-width: 100%;
     height: auto;
     margin-top: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .inhoud button {
     margin-top: 10px;
+}
+
+.background-video {
+    display: flex;
+    justify-content: center;
+
 }
