@@ -51,67 +51,11 @@
     </div>
 </nav>
 
-    <div class="video-container text-center">
-        <h1>KAMPIOENEN VAN DE NACH</h1>
-        <video autoplay loop class="background-video">
-            <source src="img/yt1z.net - Spik Span - Kampioene van de nach de11devande11de 2023 (720p) (1).mp4" type="video/mp4">
-        </video>
-        <div class="inhoud">
-            <button onclick="toggleVideo()">⏯ Video pauzeren/afspelen</button>
-        </div>
-    </div>
+<video id="myVideo" autoplay loop class="background-video">
+  <source src="img/yt1z.net - Spik Span - Kampioene van de nach de11devande11de 2023 (720p) (1).mp4" type="video/mp4">
+</video>
 
-        
-    <!-- <div class="container mt-5">
-        <h1 class="text-center">Koop je tickets voor Spik en Span!</h1>
-        <form id="ticketForm" action="process_ticket.php" method="POST" class="mt-4">
-            <div class="mb-3">
-                <label for="name" class="form-label">Naam</label>
-                <input type="text" id="name" name="name" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">E-mailadres</label>
-                <input type="email" id="email" name="email" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="ticketCategory" class="form-label">Categorie</label>
-                <select id="ticketCategory" name="category" class="form-select" required>
-                    <option value="adult">Volwassenen</option>
-                    <option value="child">Kinderen</option>
-                    <option value="group">Groepen</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="ticketQuantity" class="form-label">Aantal tickets</label>
-                <input type="number" id="ticketQuantity" name="quantity" class="form-control" min="1" max="10" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Koop Tickets</button>
-        </form>
-        <div id="qrCodeContainer" class="mt-5 text-center"></div>
-    </div>-->
-
-    <div id="carouselExampleIndicators" class="carousel slide size">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="img/vrij.jpg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="img/za.jpg" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+<button onclick="toggleVideo()">⏯ </button>
 
 </body>
 

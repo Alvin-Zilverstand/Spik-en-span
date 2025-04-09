@@ -160,3 +160,36 @@ p {
     justify-content: center;
 
 }
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.item {
+    flex: 0 0 48%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.item h5 {
+    margin-bottom: 10px;
+}
+
+.item p {
+    margin-bottom: 15px;
+}
+
+.item button {
+    width: 100%;
+}
