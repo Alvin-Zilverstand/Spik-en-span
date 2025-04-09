@@ -51,15 +51,30 @@
     </div>
 </nav>
 
-    <div class="video-container text-center">
-        <h1>KAMPIOENEN VAN DE NACH</h1>
-        <video autoplay loop class="background-video">
-            <source src="img/yt1z.net - Spik Span - Kampioene van de nach de11devande11de 2023 (720p) (1).mp4" type="video/mp4">
-        </video>
-        <div class="inhoud">
-            <button onclick="toggleVideo()">⏯ Video pauzeren/afspelen</button>
-        </div>
-    </div>
+<video id="myVideo" autoplay loop class="background-video">
+  <source src="img/yt1z.net - Spik Span - Kampioene van de nach de11devande11de 2023 (720p) (1).mp4" type="video/mp4">
+</video>
+
+<button onclick="toggleVideo()">⏯ 
+  
+</button>
+
+<script>
+  function toggleVideo() {
+    const video = document.getElementById('myVideo');
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+</script>
+
+
+
+
+
+
 
         
     <!-- <div class="container mt-5">
