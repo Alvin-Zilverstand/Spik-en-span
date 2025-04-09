@@ -7,6 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <style>
+      .inhoud {
+          position: relative;
+          z-index: 1;
+          color: white;
+          text-align: center;
+          margin-top: 20px;
+      }
+    </style>
 </head>
     
 <body>
@@ -55,7 +64,9 @@
   <source src="img/yt1z.net - Spik Span - Kampioene van de nach de11devande11de 2023 (720p) (1).mp4" type="video/mp4">
 </video>
 
-<button onclick="toggleVideo()">⏯ </button>
+<div class="inhoud">
+  <button onclick="toggleVideo()">⏯ Video pauzeren/afspelen</button>
+</div>
 
 </body>
 

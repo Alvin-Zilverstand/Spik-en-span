@@ -147,16 +147,11 @@ p {
 }
 
 .background-video {
-    max-width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
     height: auto;
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-}
-
-
-.background-video {
-    display: flex;
-    justify-content: center;
-
+    z-index: -1;
 }
