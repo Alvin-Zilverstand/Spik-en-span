@@ -3,27 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Spik en Span</title>
+    <title>Medewerker Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    <style>
-      body {
-          background-image: url('img/spik.jpg');
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-      }
-
-      .container {
-          background-color: rgba(255, 255, 255, 0.85);
-          border-radius: 20px;
-          padding: 30px;
-          margin-top: 30px;
-      }
-  </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -66,16 +50,26 @@
         </div>
       </nav>
 
-      <div class="container">
-        <h2>Contacteer Spik en Span</h2>
-        <p>Heb je vragen of wil je contact opnemen? Vul het onderstaande formulier in.</p>
-        <form action="#" method="post">
-            <input type="text" name="naam" placeholder="Je naam" required>
-            <input type="email" name="email" placeholder="Je e-mail" required>
-            <textarea name="bericht" placeholder="Je bericht" rows="5" required></textarea>
-            <button type="submit">Verstuur</button>
+    <div class="container mt-5">
+        <h1 class="text-center">Medewerker Login</h1>
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials'): ?>
+            <div class="alert alert-danger text-center" role="alert">
+                Ongeldige inloggegevens. Probeer het opnieuw.
+            </div>
+        <?php endif; ?>
+        <form id="loginForm" action="php/process_login.php" method="POST" class="mt-4">
+            <div class="mb-3">
+                <label for="username" class="form-label">Gebruikersnaam</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Wachtwoord</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Inloggen</button>
         </form>
     </div>
+
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -52,7 +52,12 @@
 
     <div class="container mt-5">
         <h1 class="text-center">Medewerker Login</h1>
-        <form id="loginForm" action="process_login.php" method="POST" class="mt-4">
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials'): ?>
+            <div class="alert alert-danger text-center" role="alert">
+                Ongeldige inloggegevens. Probeer het opnieuw.
+            </div>
+        <?php endif; ?>
+        <form id="loginForm" action="php/process_login.php" method="POST" class="mt-4">
             <div class="mb-3">
                 <label for="username" class="form-label">Gebruikersnaam</label>
                 <input type="text" id="username" name="username" class="form-control" required>
