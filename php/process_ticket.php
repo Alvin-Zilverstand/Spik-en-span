@@ -71,44 +71,45 @@ foreach ($qrCodes as $index => $qrCode) {
     $pdf = new FPDF();
     $pdf->AddPage();
 
-    // Add a header with background color
+    // Add a header with a gradient-like effect
     $pdf->SetFillColor(40, 167, 69); // Green background
     $pdf->SetTextColor(255, 255, 255); // White text
-    $pdf->SetFont('Arial', 'B', 20);
-    $pdf->Cell(0, 15, 'Spik & Span - Ticket Bevestiging', 0, 1, 'C', true);
+    $pdf->SetFont('Arial', 'B', 24);
+    $pdf->Cell(0, 20, 'Spik & Span - Ticket Bevestiging', 0, 1, 'C', true);
     $pdf->Ln(10);
 
-    // Add customer details section with a light gray background
-    $pdf->SetFillColor(240, 240, 240); // Light gray background
+    // Add a colored section for customer details
+    $pdf->SetFillColor(230, 230, 250); // Light lavender background
     $pdf->SetTextColor(0, 0, 0); // Black text
-    $pdf->SetFont('Arial', '', 12);
+    $pdf->SetFont('Arial', '', 14);
     $pdf->Cell(0, 10, 'Naam: ' . $name, 0, 1, 'L', true);
     $pdf->Cell(0, 10, 'E-mail: ' . $email, 0, 1, 'L', true);
     $pdf->Ln(10);
 
-    // Add ticket details
-    $pdf->SetFont('Arial', '', 12);
+    // Add ticket details with a colored background
+    $pdf->SetFillColor(240, 255, 240); // Light green background
     $pdf->SetTextColor(0, 0, 0); // Black text
-    $pdf->Cell(0, 10, 'Ticket ' . ($index + 1) . ':', 0, 1, 'L');
-    $pdf->Cell(0, 10, 'Ticket ID: ' . $qrCode['ticket_id'], 0, 1, 'L');
+    $pdf->SetFont('Arial', '', 14);
+    $pdf->Cell(0, 10, 'Ticket ' . ($index + 1) . ':', 0, 1, 'L', true);
+    $pdf->Cell(0, 10, 'Ticket ID: ' . $qrCode['ticket_id'], 0, 1, 'L', true);
     $pdf->Ln(5);
 
-    // Add QR code image centered
+    // Add QR code image centered and larger
     $qrCodeImage = file_get_contents($qrCode['qr_code_url']);
     $qrCodePath = __DIR__ . "/temp_qr_$index.png";
     file_put_contents($qrCodePath, $qrCodeImage);
     $pdf->Cell(0, 0, '', 0, 1, 'C'); // Move to the center
-    $pdf->Image($qrCodePath, ($pdf->GetPageWidth() - 50) / 2, $pdf->GetY(), 50, 50); // Center the QR code
-    $pdf->Ln(60);
+    $pdf->Image($qrCodePath, ($pdf->GetPageWidth() - 80) / 2, $pdf->GetY(), 80, 80); // Larger QR code
+    $pdf->Ln(90);
 
     // Clean up temporary QR code image
     unlink($qrCodePath);
 
-    // Add a footer with a green background
-    $pdf->SetY(-30);
+    // Add a footer on the same page
+    $pdf->SetY(-30); // Position the footer at the bottom of the page
     $pdf->SetFillColor(40, 167, 69); // Green background
     $pdf->SetTextColor(255, 255, 255); // White text
-    $pdf->SetFont('Arial', 'I', 10);
+    $pdf->SetFont('Arial', 'I', 12);
     $pdf->Cell(0, 10, 'Bedankt voor uw bestelling bij Spik & Span!', 0, 1, 'C', true);
     $pdf->Cell(0, 10, 'Voor vragen kunt u contact opnemen via onze website.', 0, 1, 'C', true);
 
