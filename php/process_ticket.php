@@ -106,7 +106,7 @@ foreach ($qrCodes as $index => $qrCode) {
     unlink($qrCodePath);
 
     // Add a footer on the same page
-    $pdf->SetY(-30); // Position the footer at the bottom of the page
+    $pdf->SetY(-50); // Adjust Y position to ensure the footer fits on the same page
     $pdf->SetFillColor(40, 167, 69); // Green background
     $pdf->SetTextColor(255, 255, 255); // White text
     $pdf->SetFont('Arial', 'I', 12);
