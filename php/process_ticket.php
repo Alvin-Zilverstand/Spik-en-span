@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 
 // Database connection
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "database12"; // Updated username
+$password = "181t$1lJg"; // Updated password
 $dbname = "spik_en_span";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
