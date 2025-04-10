@@ -25,11 +25,31 @@ btnScanQR.addEventListener('click', () => {
 
                     try {
                         const qrCodeData = qrcode.decode();
-                        outputData.innerText = qrCodeData;
-                        qrResult.hidden = false;
-                        qrCanvas.hidden = true;
-                        video.hidden = true; // Hide the video element after scanning
-                        stream.getTracks().forEach(track => track.stop());
+                        fetch(`../php/get_ticket_details.php?ticket_id=${encodeURIComponent(qrCodeData)}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    outputData.innerHTML = `
+                                        <p><strong>Ticket ID:</strong> ${data.ticket_id}</p>
+                                        <p><strong>Dag:</strong> ${data.day === 'friday' ? 'Vrijdag' : 'Zaterdag'}</p>
+                                        <p><strong>Categorie:</strong> ${data.category === 'volwassen' ? 'Volwassene' : 'Kind'}</p>
+                                    `;
+                                } else {
+                                    outputData.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                                }
+                                qrResult.hidden = false;
+                                qrCanvas.hidden = true;
+                                video.hidden = true; // Hide the video element after scanning
+                                stream.getTracks().forEach(track => track.stop());
+                            })
+                            .catch(err => {
+                                console.error('Error fetching ticket details:', err);
+                                outputData.innerHTML = `<p style="color: red;">Fout bij het ophalen van ticketgegevens.</p>`;
+                                qrResult.hidden = false;
+                                qrCanvas.hidden = true;
+                                video.hidden = true;
+                                stream.getTracks().forEach(track => track.stop());
+                            });
                     } catch (e) {
                         requestAnimationFrame(scan);
                     }
