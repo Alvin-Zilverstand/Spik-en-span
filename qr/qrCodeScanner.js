@@ -1,13 +1,22 @@
 const btnScanQR = document.getElementById('btn-scan-qr');
-const qrCanvas = document.getElementById('qr-canvas');
+const qrCanvas = document.getElementById('qr-canvas'); // Canvas for QR code processing
 const qrResult = document.getElementById('qr-result');
 const outputData = document.getElementById('outputData');
-const video = document.getElementById('video');
+const video = document.getElementById('video'); // Video element for camera feed
+const scanAgainButton = document.createElement('button'); // Button to scan another ticket
+
+scanAgainButton.textContent = 'Scan Nog Een Ticket';
+scanAgainButton.className = 'btn btn-primary mt-3';
+scanAgainButton.style.display = 'none'; // Initially hidden
+scanAgainButton.addEventListener('click', () => {
+    location.reload(); // Reload the page to reset the scanner
+});
+document.body.appendChild(scanAgainButton); // Add the button to the page
 
 btnScanQR.addEventListener('click', () => {
     btnScanQR.hidden = true; // Hide the QR code icon
-    video.hidden = false; // Show the video element
-    qrCanvas.hidden = false;
+    video.style.display = 'block'; // Show the video element
+    qrCanvas.hidden = true; // Ensure canvas remains hidden
     qrResult.hidden = true;
 
     const context = qrCanvas.getContext('2d');
@@ -29,25 +38,37 @@ btnScanQR.addEventListener('click', () => {
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
+                                    document.body.style.backgroundColor = 'green'; // Change background to green
                                     outputData.innerHTML = `
                                         <p><strong>Ticket ID:</strong> ${data.ticket_id}</p>
                                         <p><strong>Dag:</strong> ${data.day === 'friday' ? 'Vrijdag' : 'Zaterdag'}</p>
                                         <p><strong>Categorie:</strong> ${data.category === 'volwassen' ? 'Volwassene' : 'Kind'}</p>
+                                        <p style="color: green;">Ticket succesvol gescand en opgeslagen!</p>
                                     `;
                                 } else {
+                                    document.body.style.backgroundColor = 'red'; // Change background to red
                                     outputData.innerHTML = `<p style="color: red;">${data.message}</p>`;
                                 }
+                                setTimeout(() => {
+                                    document.body.style.backgroundColor = ''; // Reset background color
+                                }, 2000); // Reset after 2 seconds
                                 qrResult.hidden = false;
-                                qrCanvas.hidden = true;
+                                qrCanvas.hidden = true; // Ensure canvas remains hidden
                                 video.hidden = true; // Hide the video element after scanning
+                                scanAgainButton.style.display = 'block'; // Show the "Scan Again" button
                                 stream.getTracks().forEach(track => track.stop());
                             })
                             .catch(err => {
                                 console.error('Error fetching ticket details:', err);
+                                document.body.style.backgroundColor = 'red';
                                 outputData.innerHTML = `<p style="color: red;">Fout bij het ophalen van ticketgegevens.</p>`;
+                                setTimeout(() => {
+                                    document.body.style.backgroundColor = ''; // Reset background color
+                                }, 2000); // Reset after 2 seconds
                                 qrResult.hidden = false;
-                                qrCanvas.hidden = true;
+                                qrCanvas.hidden = true; // Ensure canvas remains hidden
                                 video.hidden = true;
+                                scanAgainButton.style.display = 'block'; // Show the "Scan Again" button
                                 stream.getTracks().forEach(track => track.stop());
                             });
                     } catch (e) {

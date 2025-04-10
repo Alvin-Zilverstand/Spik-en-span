@@ -32,7 +32,38 @@ $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $ticket = $result->fetch_assoc();
-    echo json_encode(['success' => true, 'ticket_id' => $ticket['ticket_id'], 'category' => $ticket['category'], 'day' => $ticket['day']]);
+
+    // Check if the ticket has already been scanned
+    $checkScannedSql = "SELECT id FROM scanned_tickets WHERE ticket_id = ?";
+    $checkStmt = $conn->prepare($checkScannedSql);
+    $checkStmt->bind_param("s", $ticket_id);
+    $checkStmt->execute();
+    $checkResult = $checkStmt->get_result();
+
+    if ($checkResult->num_rows > 0) {
+        echo json_encode(['success' => false, 'message' => 'Ticket al gescanned.']);
+    } else {
+        // Insert the ticket into the scanned_tickets table
+        $insertScannedSql = "INSERT INTO scanned_tickets (ticket_id, is_valid) VALUES (?, ?)";
+        $insertStmt = $conn->prepare($insertScannedSql);
+        $is_valid = true;
+        $insertStmt->bind_param("si", $ticket_id, $is_valid);
+
+        if ($insertStmt->execute()) {
+            echo json_encode([
+                'success' => true,
+                'ticket_id' => $ticket['ticket_id'],
+                'category' => $ticket['category'],
+                'day' => $ticket['day']
+            ]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Fout bij het opslaan van het gescande ticket.']);
+        }
+
+        $insertStmt->close();
+    }
+
+    $checkStmt->close();
 } else {
     echo json_encode(['success' => false, 'message' => 'Ticket niet gevonden.']);
 }
