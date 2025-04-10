@@ -1,29 +1,29 @@
 const btnScanQR = document.getElementById('btn-scan-qr');
-const qrCanvas = document.getElementById('qr-canvas'); // Canvas for QR code processing
+const qrCanvas = document.getElementById('qr-canvas');
 const qrResult = document.getElementById('qr-result');
 const outputData = document.getElementById('outputData');
-const video = document.getElementById('video'); // Video element for camera feed
-const scanAgainButton = document.createElement('button'); // Button to scan another ticket
+const video = document.getElementById('video');
+const scanAgainButton = document.createElement('button');
 
 scanAgainButton.textContent = 'Scan Nog Een Ticket';
 scanAgainButton.className = 'btn btn-primary mt-3';
-scanAgainButton.style.display = 'none'; // Initially hidden
+scanAgainButton.style.display = 'none';
 scanAgainButton.addEventListener('click', () => {
-    location.reload(); // Reload the page to reset the scanner
+    location.reload();
 });
-document.body.appendChild(scanAgainButton); // Add the button to the page
+document.body.appendChild(scanAgainButton);
 
 btnScanQR.addEventListener('click', () => {
-    btnScanQR.hidden = true; // Hide the QR code icon
-    video.style.display = 'block'; // Show the video element
-    qrCanvas.hidden = true; // Ensure canvas remains hidden
+    btnScanQR.hidden = true;
+    video.style.display = 'block';
+    qrCanvas.hidden = true;
     qrResult.hidden = true;
 
     const context = qrCanvas.getContext('2d');
     navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
         .then((stream) => {
             video.srcObject = stream;
-            video.setAttribute('playsinline', true); // Required to work on iOS
+            video.setAttribute('playsinline', true);
             video.play();
 
             const scan = () => {
@@ -38,7 +38,7 @@ btnScanQR.addEventListener('click', () => {
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    document.body.style.backgroundColor = 'green'; // Change background to green
+                                    document.body.style.backgroundColor = 'green';
                                     outputData.innerHTML = `
                                         <p><strong>Ticket ID:</strong> ${data.ticket_id}</p>
                                         <p><strong>Dag:</strong> ${data.day === 'friday' ? 'Vrijdag' : 'Zaterdag'}</p>
@@ -46,16 +46,16 @@ btnScanQR.addEventListener('click', () => {
                                         <p style="color: green;">Ticket succesvol gescand en opgeslagen!</p>
                                     `;
                                 } else {
-                                    document.body.style.backgroundColor = 'red'; // Change background to red
+                                    document.body.style.backgroundColor = 'red';
                                     outputData.innerHTML = `<p style="color: red;">${data.message}</p>`;
                                 }
                                 setTimeout(() => {
-                                    document.body.style.backgroundColor = ''; // Reset background color
-                                }, 2000); // Reset after 2 seconds
+                                    document.body.style.backgroundColor = '';
+                                }, 2000);
                                 qrResult.hidden = false;
-                                qrCanvas.hidden = true; // Ensure canvas remains hidden
-                                video.hidden = true; // Hide the video element after scanning
-                                scanAgainButton.style.display = 'block'; // Show the "Scan Again" button
+                                qrCanvas.hidden = true;
+                                video.hidden = true;
+                                scanAgainButton.style.display = 'block';
                                 stream.getTracks().forEach(track => track.stop());
                             })
                             .catch(err => {
@@ -63,12 +63,12 @@ btnScanQR.addEventListener('click', () => {
                                 document.body.style.backgroundColor = 'red';
                                 outputData.innerHTML = `<p style="color: red;">Fout bij het ophalen van ticketgegevens.</p>`;
                                 setTimeout(() => {
-                                    document.body.style.backgroundColor = ''; // Reset background color
-                                }, 2000); // Reset after 2 seconds
+                                    document.body.style.backgroundColor = '';
+                                }, 2000);
                                 qrResult.hidden = false;
-                                qrCanvas.hidden = true; // Ensure canvas remains hidden
+                                qrCanvas.hidden = true;
                                 video.hidden = true;
-                                scanAgainButton.style.display = 'block'; // Show the "Scan Again" button
+                                scanAgainButton.style.display = 'block';
                                 stream.getTracks().forEach(track => track.stop());
                             });
                     } catch (e) {

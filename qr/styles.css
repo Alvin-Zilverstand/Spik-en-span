@@ -32,7 +32,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 75vh; /* Full viewport height for vertical centering */
+    height: 75vh;
   }
   
   #btn-scan-qr img {
@@ -40,7 +40,7 @@ html {
     padding: 15px;
     margin: 15px;
     background: white;
-    border-radius: 10px; /* Optional: Add rounded corners */
+    border-radius: 10px; 
   }
   
   #qr-result {
@@ -52,7 +52,7 @@ html {
   }
 
   #video {
-    display: none; /* Initially hidden */
+    display: none; 
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
@@ -62,5 +62,5 @@ html {
   }
 
   #video:visible {
-    display: block; /* Show the video feed when it becomes visible */
+    display: block; 
   }

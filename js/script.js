@@ -1,4 +1,3 @@
-// Check if the ticket form exists before adding an event listener
 const ticketForm = document.getElementById('ticketForm');
 if (ticketForm) {
     ticketForm.addEventListener('submit', function (e) {
@@ -25,7 +24,6 @@ if (ticketForm) {
     });
 }
 
-// Function to toggle video playback
 function toggleVideo() {
     const video = document.getElementById('myVideo');
     if (video) {

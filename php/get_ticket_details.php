@@ -1,21 +1,18 @@
 <?php
 header('Content-Type: application/json');
 
-// Database connection
 $servername = "localhost";
-$username = "database12"; // Updated username
-$password = "181t$1lJg"; // Updated password
+$username = "database12";
+$password = "181t$1lJg";
 $dbname = "spik_en_span";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'message' => 'Databaseverbinding mislukt.']);
     exit();
 }
 
-// Retrieve ticket_id from the query string
 $ticket_id = isset($_GET['ticket_id']) ? trim($_GET['ticket_id']) : '';
 
 if (empty($ticket_id)) {
@@ -23,7 +20,6 @@ if (empty($ticket_id)) {
     exit();
 }
 
-// Query the database for ticket details
 $sql = "SELECT ticket_id, category, day FROM tickets WHERE ticket_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $ticket_id);
@@ -33,7 +29,6 @@ $result = $stmt->get_result();
 if ($result->num_rows > 0) {
     $ticket = $result->fetch_assoc();
 
-    // Check if the ticket has already been scanned
     $checkScannedSql = "SELECT id FROM scanned_tickets WHERE ticket_id = ?";
     $checkStmt = $conn->prepare($checkScannedSql);
     $checkStmt->bind_param("s", $ticket_id);
@@ -43,7 +38,6 @@ if ($result->num_rows > 0) {
     if ($checkResult->num_rows > 0) {
         echo json_encode(['success' => false, 'message' => 'Ticket al gescanned.']);
     } else {
-        // Insert the ticket into the scanned_tickets table
         $insertScannedSql = "INSERT INTO scanned_tickets (ticket_id, is_valid) VALUES (?, ?)";
         $insertStmt = $conn->prepare($insertScannedSql);
         $is_valid = true;
