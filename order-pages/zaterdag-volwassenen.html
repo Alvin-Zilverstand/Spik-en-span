@@ -3,57 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaterdag Volwassenen - Spik En Span</title>
+    <title>Volwassenen Ticket - Zaterdag</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bestellen.css">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 <body>
-    
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="../index.html">
-            <img src="../assets/favicon.ico" alt="Bootstrap" width="30" height="24">
-            Spik & Span
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../index.html">
-                    Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="../bestellen.html">
-                    Tickets Bestellen</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="../contact.html">
-                    Contact
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="../over-ons.html">
-                    Over Ons
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="../employee-login.php">
-                    Medewerkers
-                </a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/favicon.ico" alt="Bootstrap" width="30" height="24">
+                Spik & Span
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../bestellen.html">Tickets Bestellen</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../over-ons.html">Over Ons</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../employee-login.php">Medewerkers</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../assets/za.jpg" class="img-fluid rounded" alt="Volwassenen Ticket Zaterdag">
+            </div>
+            <div class="col-md-6">
+                <h1>Volwassenen Ticket - Zaterdag 16-08</h1>
+                <p>Toegang voor één volwassene op zaterdag 16 augustus. Geniet van een spectaculaire avond vol plezier en muziek!</p>
+                <h3 class="text-success">€30,00</h3>
+                <form action="../php/process_ticket.php" method="POST">
+                    <input type="hidden" name="category" value="Volwassenen Zaterdag">
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Aantal Tickets</label>
+                        <input type="number" id="quantity" name="quantity" class="form-control" min="1" value="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Naam</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Bestel Nu</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../js/script.js"></script>
-
 </html>
