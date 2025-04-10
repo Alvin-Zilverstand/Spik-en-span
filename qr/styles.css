@@ -29,6 +29,10 @@ html {
   
   #btn-scan-qr {
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh; /* Full viewport height for vertical centering */
   }
   
   #btn-scan-qr img {
@@ -36,6 +40,7 @@ html {
     padding: 15px;
     margin: 15px;
     background: white;
+    border-radius: 10px; /* Optional: Add rounded corners */
   }
   
   #qr-result {
@@ -45,4 +50,3 @@ html {
     max-width: 700px;
     background-color: white;
   }
-  

@@ -35,7 +35,7 @@ try {
         // Start session and store user ID
         session_start();
         $_SESSION['user_id'] = $user_id;
-        header("Location: ../qr/qr.html"); // Redirect to the QR scanner page
+        header("Location: "); // Redirect to the QR scanner page
         exit();
     } else {
         // Redirect back to login page with an error message

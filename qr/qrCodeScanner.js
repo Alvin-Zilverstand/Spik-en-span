@@ -1,56 +1,42 @@
-const video = document.createElement("video");
-const canvasElement = document.getElementById("qr-canvas");
-const canvas = canvasElement.getContext("2d");
+const btnScanQR = document.getElementById('btn-scan-qr');
+const qrCanvas = document.getElementById('qr-canvas');
+const qrResult = document.getElementById('qr-result');
+const outputData = document.getElementById('outputData');
 
-const qrResult = document.getElementById("qr-result");
-const outputData = document.getElementById("outputData");
-const btnScanQR = document.getElementById("btn-scan-qr");
+btnScanQR.addEventListener('click', () => {
+    qrCanvas.hidden = false;
+    qrResult.hidden = true;
 
-let scanning = false;
+    const context = qrCanvas.getContext('2d');
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then((stream) => {
+            const video = document.createElement('video');
+            video.srcObject = stream;
+            video.setAttribute('playsinline', true); // Required to work on iOS
+            video.play();
 
-qrcode.callback = res => {
-  if (res) {
-    outputData.innerText = res;
-    scanning = false;
+            const scan = () => {
+                if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                    qrCanvas.height = video.videoHeight;
+                    qrCanvas.width = video.videoWidth;
+                    context.drawImage(video, 0, 0, qrCanvas.width, qrCanvas.height);
 
-    video.srcObject.getTracks().forEach(track => {
-      track.stop();
-    });
-
-    qrResult.hidden = false;
-    canvasElement.hidden = true;
-    btnScanQR.hidden = false;
-  }
-};
-
-btnScanQR.onclick = () => {
-  navigator.mediaDevices
-    .getUserMedia({ video: { facingMode: "environment" } })
-    .then(function(stream) {
-      scanning = true;
-      qrResult.hidden = true;
-      btnScanQR.hidden = true;
-      canvasElement.hidden = false;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.srcObject = stream;
-      video.play();
-      tick();
-      scan();
-    });
-};
-
-function tick() {
-  canvasElement.height = video.videoHeight;
-  canvasElement.width = video.videoWidth;
-  canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-
-  scanning && requestAnimationFrame(tick);
-}
-
-function scan() {
-  try {
-    qrcode.decode();
-  } catch (e) {
-    setTimeout(scan, 300);
-  }
-}
+                    try {
+                        const qrCodeData = qrcode.decode();
+                        outputData.innerText = qrCodeData;
+                        qrResult.hidden = false;
+                        qrCanvas.hidden = true;
+                        stream.getTracks().forEach(track => track.stop());
+                    } catch (e) {
+                        requestAnimationFrame(scan);
+                    }
+                } else {
+                    requestAnimationFrame(scan);
+                }
+            };
+            scan();
+        })
+        .catch((err) => {
+            console.error('Error accessing camera:', err);
+        });
+});

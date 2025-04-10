@@ -45,7 +45,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 
     if (username === 'admin' && password === 'password') {
         alert('Succesvol ingelogd!');
-        window.location.href = '../qr/qr.html';
+        window.location.href = './qr/qr.html';
     } else {
         alert('Ongeldige inloggegevens.');
     }
