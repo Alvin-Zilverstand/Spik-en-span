@@ -1,4 +1,3 @@
-
 CREATE DATABASE IF NOT EXISTS spik_en_span;
 USE spik_en_span;
 
@@ -10,6 +9,7 @@ CREATE TABLE tickets (
     email VARCHAR(255) NOT NULL,
     category ENUM('adult', 'child', 'group') NOT NULL,
     quantity INT NOT NULL,
+    qr_code_link VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -53,4 +53,4 @@ DELIMITER ;
 
 
 INSERT INTO employees (username, password_hash)
-VALUES ('admin', SHA2('password', 256)); 
+VALUES ('admin', SHA2('password', 256));
