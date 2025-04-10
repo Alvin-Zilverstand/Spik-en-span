@@ -35,11 +35,11 @@ try {
         // Start session and store user ID
         session_start();
         $_SESSION['user_id'] = $user_id;
-        header("Location: ../qr/qr.html"); // Redirect to QR scanner page
+        header("Location: ../qr/qr.html"); // Redirect to the QR scanner page
         exit();
     } else {
         // Redirect back to login page with an error message
-        header("Location: ../employee-login.html?error=invalid_credentials");
+        header("Location: ../employee-login.php?error=invalid_credentials");
         exit();
     }
 } finally {
