@@ -32,3 +32,19 @@ function toggleVideo() {
       video.pause();
     }
   }
+
+
+  document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+   
+    if (username === 'admin' && password === 'password') {
+        alert('Succesvol ingelogd!');
+        window.location.href = '../qr/qr.html'; 
+    } else {
+        alert('Ongeldige inloggegevens.');
+    }
+});

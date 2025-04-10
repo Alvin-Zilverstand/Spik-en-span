@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medewerker Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -67,20 +67,7 @@
 
 </body>
 
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-       
-        if (username === 'admin' && password === 'password') {
-            alert('Succesvol ingelogd!');
-            window.location.href = 'qr/qr.html'; 
-        } else {
-            alert('Ongeldige inloggegevens.');
-        }
-    });
-</script>
 </html>
