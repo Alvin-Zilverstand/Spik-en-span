@@ -7,7 +7,8 @@ CREATE TABLE tickets (
     ticket_id VARCHAR(255) NOT NULL UNIQUE,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    category ENUM('adult', 'child', 'group') NOT NULL,
+    category ENUM('volwassen', 'kind') NOT NULL,
+    day ENUM('friday', 'saturday') NOT NULL,
     quantity INT NOT NULL,
     qr_code_link VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

@@ -21,8 +21,13 @@ if ($conn->connect_error) {
 // Retrieve form data
 $name = $_POST['name'];
 $email = $_POST['email'];
-$category = $_POST['category'];
+$category = $_POST['category']; // e.g., 'Volwassenen Vrijdag' or 'Kinderen Zaterdag'
 $quantity = (int)$_POST['quantity'];
+
+// Extract day and category from the input
+list($categoryType, $day) = explode(' ', $category); // Split into 'Volwassenen'/'Kinderen' and 'Vrijdag'/'Zaterdag'
+$day = strtolower($day) === 'vrijdag' ? 'friday' : 'saturday';
+$categoryType = strtolower($categoryType) === 'volwassenen' ? 'volwassen' : 'kind';
 
 require __DIR__ . '/../phpmailer/src/PHPMailer.php';
 require __DIR__ . '/../phpmailer/src/SMTP.php';
@@ -32,7 +37,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Prepare SQL statement
-$sql = "INSERT INTO tickets (ticket_id, name, email, category, quantity, qr_code_link) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO tickets (ticket_id, name, email, category, day, quantity, qr_code_link) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 
 if (!$stmt) {
@@ -46,7 +51,7 @@ for ($i = 0; $i < $quantity; $i++) {
     $ticket_id = bin2hex(random_bytes(16)); // Generate a 32-character unique ticket ID
     $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" . urlencode($ticket_id); // Generate QR code link
     $one_ticket_quantity = 1; // Each row represents one ticket
-    $stmt->bind_param("ssssss", $ticket_id, $name, $email, $category, $one_ticket_quantity, $qrCodeUrl);
+    $stmt->bind_param("sssssis", $ticket_id, $name, $email, $categoryType, $day, $one_ticket_quantity, $qrCodeUrl);
     if (!$stmt->execute()) {
         echo "Error: " . $stmt->error;
         $stmt->close();
