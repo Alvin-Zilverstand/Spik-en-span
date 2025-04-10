@@ -44,7 +44,7 @@ $qrCodes = []; // Array to store QR code URLs for email attachment
 // Insert one ticket per row and generate QR codes
 for ($i = 0; $i < $quantity; $i++) {
     $ticket_id = bin2hex(random_bytes(16)); // Generate a 32-character unique ticket ID
-    $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=" . urlencode($ticket_id); // Generate QR code link
+    $qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" . urlencode($ticket_id); // Generate QR code link
     $one_ticket_quantity = 1; // Each row represents one ticket
     $stmt->bind_param("ssssss", $ticket_id, $name, $email, $category, $one_ticket_quantity, $qrCodeUrl);
     if (!$stmt->execute()) {
