@@ -110,7 +110,7 @@ try {
     $mail->Host = 'smtp.office365.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'ticketsopdracht@outlook.com';
-    $mail->Password = 'ZZ^HyL*vyveJEZ04u&1W'; // Replace with the actual password or app-specific password
+    $mail->Password = 'olomnqcnvwfzsrky'; // Replace with the actual password or app-specific password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
