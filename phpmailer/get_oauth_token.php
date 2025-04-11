@@ -134,8 +134,8 @@ switch ($providerName) {
         $provider = new Microsoft($params);
         $options = [
             'scope' => [
-                'wl.imap',
-                'wl.offline_access'
+                'https://outlook.office.com/SMTP.Send',
+                'offline_access'
             ]
         ];
         break;
