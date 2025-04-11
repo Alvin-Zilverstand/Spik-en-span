@@ -107,14 +107,14 @@ $mail = new PHPMailer(true);
 
 try {
     $mail->isSMTP();
-    $mail->Host = 'smtp.office365.com';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'ticketsopdracht@outlook.com';
-    $mail->Password = 'olomnqcnvwfzsrky'; // Replace with the actual password or app-specific password
+    $mail->Username = 'ilqvw2txgisiayx7ftcb@gmail.com';
+    $mail->Password = 'uflc vzcy xmgd tfpz';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom('ticketsopdracht@outlook.com', 'Spik & Span');
+    $mail->setFrom('ilqvw2txgisiayx7ftcb@gmail.com', 'Spik & Span');
     $mail->addAddress($email, $name);
 
     $mail->isHTML(true);
